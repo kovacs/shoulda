@@ -68,7 +68,7 @@ module Shoulda # :nodoc:
         def flash
           return @flash if @flash
           flash_and_now = @controller.request.session["flash"].dup if @controller.request.session["flash"]
-          flash         = @controller.send(:flash)
+          flash         = @controller.send(:flash).to_hash
 
           @flash = if @now
             flash.keys.each {|key| flash_and_now.delete(key) }
